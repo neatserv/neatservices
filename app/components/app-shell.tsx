@@ -1,25 +1,24 @@
+"use client";
+
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import {
   BarChart3,
   Bell,
   Bot,
   BriefcaseBusiness,
-  CalendarRange,
   ChevronRight,
   CircleDashed,
   Compass,
-  ContactRound,
+  ChevronLeft,
   LayoutDashboard,
   MessageSquareText,
-  PanelLeftClose,
   Search,
   Send,
   Settings,
   Sparkles,
   Users,
   Workflow,
-  Wrench,
 } from "lucide-react";
 
 type NavItem = {
@@ -54,19 +53,35 @@ export default function AppShell({
   description: string;
   activePath: string;
 }) {
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.16),_transparent_32%),linear-gradient(135deg,_#f8fbff_0%,_#fefefe_100%)] text-slate-900">
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col lg:flex-row">
-        <aside className="w-full border-b border-slate-200 bg-white/90 p-5 backdrop-blur lg:min-h-screen lg:w-72 lg:border-b-0 lg:border-r">
+        <aside
+          className={`w-full border-b border-slate-200 bg-white/85 p-5 backdrop-blur-xl transition-all duration-300 lg:min-h-screen lg:border-b-0 lg:border-r ${
+            collapsed ? "lg:w-24" : "lg:w-72"
+          }`}
+        >
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-xl font-semibold tracking-tight text-slate-950">
-              Neat Services
+            <Link href="/" className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-600 font-semibold text-white shadow-lg shadow-sky-100">
+                NS
+              </div>
+              {!collapsed && (
+                <span className="text-lg font-semibold tracking-tight text-slate-950">Neat Services</span>
+              )}
             </Link>
-            <button className="rounded-full border border-slate-200 p-2 text-slate-500 transition hover:border-sky-300 hover:text-sky-600">
-              <PanelLeftClose size={16} />
+            <button
+              onClick={() => setCollapsed((value) => !value)}
+              className="rounded-full border border-slate-200 p-2 text-slate-500 transition hover:border-sky-300 hover:text-sky-600"
+            >
+              <ChevronLeft size={16} className={collapsed ? "rotate-180" : ""} />
             </button>
           </div>
-          <p className="mt-2 text-sm text-slate-500">Operations center for modern customer engagement.</p>
+          {!collapsed && (
+            <p className="mt-2 text-sm text-slate-500">Operations center for modern customer engagement.</p>
+          )}
 
           <nav className="mt-8 space-y-1.5">
             {navItems.map((item) => {
@@ -75,56 +90,59 @@ export default function AppShell({
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center justify-between rounded-2xl px-3.5 py-3 text-sm font-medium transition ${
+                  className={`flex items-center rounded-2xl px-3.5 py-3 text-sm font-medium transition-all duration-200 ${
                     active
                       ? "bg-sky-600 text-white shadow-lg shadow-sky-100"
                       : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
-                  }`}
+                  } ${collapsed ? "justify-center lg:px-2" : "justify-between"}`}
                 >
-                  <span className="flex items-center gap-3">
-                    <span className="rounded-lg bg-white/20 p-1.5">{item.icon}</span>
-                    {item.label}
+                  <span className={`flex items-center ${collapsed ? "justify-center" : "gap-3"}`}>
+                    <span className={`rounded-lg p-1.5 ${active ? "bg-white/20" : "bg-slate-100"}`}>
+                      {item.icon}
+                    </span>
+                    {!collapsed && <span>{item.label}</span>}
                   </span>
-                  <ChevronRight size={15} />
+                  {!collapsed && <ChevronRight size={15} />}
                 </Link>
               );
             })}
           </nav>
         </aside>
 
-        <main className="flex-1 bg-[linear-gradient(135deg,_#f8fbff_0%,_#fefefe_100%)] p-4 sm:p-6 lg:p-8">
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_20px_60px_-25px_rgba(15,23,42,0.25)] sm:p-6 lg:p-8">
+        <main className="flex-1 bg-transparent p-4 sm:p-6 lg:p-8">
+          <div className="rounded-[2rem] border border-slate-200 bg-white/90 p-4 shadow-[0_30px_80px_-35px_rgba(15,23,42,0.25)] backdrop-blur sm:p-6 lg:p-8">
             <header className="flex flex-col gap-4 border-b border-slate-200 pb-6 lg:flex-row lg:items-center lg:justify-between">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-600">
-                  Workspace
-                </p>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-600">Workspace</p>
                 <h1 className="mt-2 text-2xl font-semibold tracking-tight text-slate-950">{title}</h1>
                 <p className="mt-1 text-sm text-slate-500">{description}</p>
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <label className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500">
+                <label className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500 shadow-sm">
                   <Search size={16} className="text-slate-400" />
                   <input
                     type="text"
-                    placeholder="Search"
+                    placeholder="Global search"
                     className="w-full bg-transparent outline-none sm:w-40"
                   />
                 </label>
-                <button className="relative rounded-full border border-slate-200 p-2.5 text-slate-600 transition hover:border-sky-300 hover:text-sky-600">
+                <button className="relative rounded-full border border-slate-200 bg-white p-2.5 text-slate-600 shadow-sm transition hover:border-sky-300 hover:text-sky-600">
                   <Bell size={18} />
                   <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-sky-500" />
                 </button>
-                <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-3 py-2">
+                <button className="flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 shadow-sm transition hover:border-sky-300 hover:bg-white">
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sky-600 font-semibold text-white">
                     AM
                   </div>
-                  <div>
+                  <div className="text-left">
                     <p className="text-sm font-semibold text-slate-900">Ava Moore</p>
                     <p className="text-xs text-slate-500">Workspace Owner</p>
                   </div>
-                </div>
+                </button>
+                <button className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-sky-300 hover:text-sky-700">
+                  Neat Services • Starter
+                </button>
               </div>
             </header>
 
