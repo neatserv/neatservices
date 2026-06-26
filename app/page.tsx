@@ -103,15 +103,15 @@ export default function Home() {
             Neat Services
           </Link>
           <div className="hidden items-center gap-6 text-sm font-medium text-slate-600 md:flex">
-            <a href="#features" className="transition hover:text-slate-950">
+            <Link href="/#features" className="transition hover:text-slate-950">
               Features
-            </a>
-            <a href="#pricing" className="transition hover:text-slate-950">
+            </Link>
+            <Link href="/#pricing" className="transition hover:text-slate-950">
               Pricing
-            </a>
-            <a href="#contact" className="transition hover:text-slate-950">
+            </Link>
+            <Link href="/#contact" className="transition hover:text-slate-950">
               Contact
-            </a>
+            </Link>
           </div>
           <Link
             href="/login"
@@ -141,12 +141,12 @@ export default function Home() {
               >
                 Get Started
               </Link>
-              <a
-                href="#contact"
+              <Link
+                href="/#contact"
                 className="rounded-full border border-slate-300 bg-white px-6 py-3 text-center font-semibold text-slate-700 transition duration-200 hover:-translate-y-0.5 hover:border-sky-300 hover:text-sky-700"
               >
                 Book Demo
-              </a>
+              </Link>
             </div>
             <div className="mt-8 flex flex-wrap gap-4 text-sm text-slate-500">
               <span className="rounded-full bg-white px-3 py-2 shadow-sm">⚡ Fast deployment</span>
@@ -253,8 +253,8 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <a
-                href="#contact"
+              <Link
+                href="/#contact"
                 className={`mt-8 inline-flex rounded-full px-5 py-3 text-sm font-semibold transition ${
                   plan.featured
                     ? "bg-white text-slate-950 hover:bg-slate-100"
@@ -262,7 +262,7 @@ export default function Home() {
                 }`}
               >
                 {plan.name === "Enterprise" ? "Contact Sales" : "Choose Plan"}
-              </a>
+              </Link>
             </div>
           ))}
         </div>
@@ -316,10 +316,10 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-wrap gap-4 text-sm">
-            <a href="#" className="transition hover:text-white">About</a>
-            <a href="#" className="transition hover:text-white">Privacy Policy</a>
-            <a href="#" className="transition hover:text-white">Terms</a>
-            <a href="#contact" className="transition hover:text-white">Contact</a>
+            <Link href="/" className="transition hover:text-white">About</Link>
+            <Link href="/" className="transition hover:text-white">Privacy Policy</Link>
+            <Link href="/" className="transition hover:text-white">Terms</Link>
+            <Link href="/#contact" className="transition hover:text-white">Contact</Link>
           </div>
         </div>
         <div className="mx-auto mt-8 max-w-7xl px-6 text-sm text-slate-500 sm:px-8 lg:px-10">
