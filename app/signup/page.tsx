@@ -1,6 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import type { FormEvent } from "react";
 
 export default function SignupPage() {
+  const router = useRouter();
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    router.push("/dashboard");
+  };
+
   return (
     <main className="min-h-screen bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef5ff_45%,_#f9fbff_100%)] px-4 py-12 text-slate-900 sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-6xl items-center justify-center">
@@ -14,7 +25,7 @@ export default function SignupPage() {
           </div>
 
           <div className="px-8 py-8 sm:px-10">
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-700">
                   Full Name

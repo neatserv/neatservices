@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const stats = [
   { value: "10K+", label: "Conversations" },
   { value: "500+", label: "Businesses" },
@@ -94,12 +96,12 @@ const faqs = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef5ff_45%,_#f9fbff_100%)] text-slate-900">
+    <main className="min-h-screen scroll-smooth bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef5ff_45%,_#f9fbff_100%)] text-slate-900">
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:px-8 lg:px-10">
-          <a href="#" className="text-xl font-semibold tracking-tight text-slate-950">
+          <Link href="/" className="text-xl font-semibold tracking-tight text-slate-950">
             Neat Services
-          </a>
+          </Link>
           <div className="hidden items-center gap-6 text-sm font-medium text-slate-600 md:flex">
             <a href="#features" className="transition hover:text-slate-950">
               Features
@@ -111,12 +113,12 @@ export default function Home() {
               Contact
             </a>
           </div>
-          <a
-            href="#"
+          <Link
+            href="/login"
             className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:text-sky-700"
           >
             Login
-          </a>
+          </Link>
         </nav>
       </header>
 
@@ -133,12 +135,12 @@ export default function Home() {
               Automate customer conversations, manage contacts, launch WhatsApp campaigns, and grow your business with AI.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#pricing"
+              <Link
+                href="/signup"
                 className="rounded-full bg-slate-950 px-6 py-3 text-center font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800"
               >
                 Get Started
-              </a>
+              </Link>
               <a
                 href="#contact"
                 className="rounded-full border border-slate-300 bg-white px-6 py-3 text-center font-semibold text-slate-700 transition duration-200 hover:-translate-y-0.5 hover:border-sky-300 hover:text-sky-700"
