@@ -13,8 +13,20 @@ export default function SignupPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef5ff_45%,_#f9fbff_100%)] px-4 py-12 text-slate-900 sm:px-6 lg:px-8">
-      <div className="mx-auto flex max-w-6xl items-center justify-center">
+    <main className="min-h-screen bg-[linear-gradient(135deg,_#f8fbff_0%,_#eef5ff_45%,_#f9fbff_100%)] px-4 py-8 text-slate-900 sm:px-6 lg:px-8 lg:py-12">
+      <div className="mx-auto flex max-w-6xl flex-col items-center">
+        <div className="mb-4 flex w-full max-w-md items-center justify-between">
+          <Link href="/" className="flex items-center gap-3 text-sm font-semibold text-slate-700 transition hover:text-slate-950">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-950 text-sm font-semibold text-white">
+              NS
+            </div>
+            <span>Neat Services</span>
+          </Link>
+          <Link href="/" className="text-sm font-medium text-sky-700 transition hover:text-sky-800">
+            ← Back to Home
+          </Link>
+        </div>
+
         <div className="w-full max-w-md overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-2xl shadow-sky-100">
           <div className="bg-slate-950 px-8 py-8 text-center text-white">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-500/20 text-xl font-semibold text-sky-300">
